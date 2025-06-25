@@ -4,22 +4,43 @@
   "description": "社内勤怠管理・Notion連携Webアプリケーション",
   "main": "index.js",
   "scripts": {
+    "setup": "npm run setup:all",
+    "setup:all": "npm run install:all && npm run setup:env && npm run setup:db",
+    "install:all": "npm install && npm run install:frontend && npm run install:backend",
     "install:frontend": "cd frontend && npm install",
     "install:backend": "cd backend && npm install",
-    "install:all": "npm run install:frontend && npm run install:backend",
+    "setup:env": "node scripts/setup-env.js",
+    "setup:db": "cd backend && npm run db:setup",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\" --names \"API,WEB\" --prefix-colors \"green,blue\"",
     "dev:frontend": "cd frontend && npm start",
     "dev:backend": "cd backend && npm run dev",
-    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:sqlite": "npm run dev:sqlite:setup && npm run dev",
+    "dev:sqlite:setup": "cd backend && npm run db:setup:sqlite",
+    "build": "npm run build:backend && npm run build:frontend",
     "build:frontend": "cd frontend && npm run build",
     "build:backend": "cd backend && npm run build",
-    "build": "npm run build:backend && npm run build:frontend",
-    "lint": "cd frontend && npm run lint && cd ../backend && npm run lint",
-    "test": "cd frontend && npm test && cd ../backend && npm test"
+    "start": "cd backend && npm run start",
+    "lint": "npm run lint:frontend && npm run lint:backend",
+    "lint:frontend": "cd frontend && npm run lint",
+    "lint:backend": "cd backend && npm run lint",
+    "test": "npm run test:frontend && npm run test:backend",
+    "test:frontend": "cd frontend && npm test",
+    "test:backend": "cd backend && npm test",
+    "db:reset": "cd backend && npm run db:reset",
+    "db:migrate": "cd backend && npm run db:migrate",
+    "db:seed": "cd backend && npm run db:seed",
+    "docker:dev": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "docker:reset": "docker-compose down -v && docker-compose up -d"
   },
-  "keywords": ["timecard", "attendance", "notion", "react", "express"],
-  "author": "Your Name",
+  "keywords": ["timecard", "attendance", "notion", "react", "express", "typescript"],
+  "author": "Timecard Team",
   "license": "MIT",
   "devDependencies": {
-    "concurrently": "^7.6.0"
+    "concurrently": "^8.2.2"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
   }
 }

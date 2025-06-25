@@ -94,45 +94,64 @@ Liquid Glass デザインを採用した現代的な勤怠管理システムで�
 
 ### 前提条件
 
-<table>
-<tr>
-<th>🪟 Windows</th>
-<th>🐧 Linux/Mac</th>
-</tr>
-<tr>
-<td>
+<div align="center">
 
-- **WSL2** (Windows Subsystem for Linux 2)
-- **Docker Desktop** (WSL2バックエンド)
-- **Git for Windows**
-- **VS Code** (推奨)
+| 🪟 **Windows（推奨）** | 🐧 **Linux/Mac** |
+|----------------------|------------------|
+| • **Node.js 18+** | • **Node.js 18+** |
+| • **Git for Windows** | • **Git** |
+| • **VS Code** (推奨) | • **VS Code** (推奨) |
+| • **PostgreSQL** (オプション) | • **PostgreSQL** (オプション) |
 
-</td>
-<td>
+</div>
 
-- **Docker** & **Docker Compose**
-- **Node.js 18+** (開発用)
-- **Git**
+> 🎉 **WSL不要！** Windows ネイティブ環境で開発可能です
 
-</td>
-</tr>
-</table>
+### 🚀 超簡単セットアップ（3分で完了）
 
-### 簡単セットアップ
+<div align="center">
+
+**🪟 Windows ユーザー（推奨）**
+
+</div>
 
 **1️⃣ リポジトリをクローン**
-\`\`\`bash
+\`\`\`cmd
 git clone <repository-url>
 cd timecard_web_v3
 \`\`\`
 
-**2️⃣ 自動セットアップ実行**
-\`\`\`bash
-chmod +x setup.sh
-./setup.sh
+**2️⃣ ワンクリックセットアップ実行**
+\`\`\`cmd
+setup.bat
 \`\`\`
 
-**3️⃣ 完了！** 数分でアプリケーションが起動します。
+または手動で：
+\`\`\`cmd
+npm run setup
+\`\`\`
+
+**3️⃣ 開発サーバー起動**
+\`\`\`cmd
+npm run dev
+\`\`\`
+
+**🎊 完了！** ブラウザで http://localhost:3000 にアクセス
+
+---
+
+<div align="center">
+
+**🐧 Linux/Mac ユーザー**
+
+</div>
+
+\`\`\`bash
+git clone <repository-url>
+cd timecard_web_v3
+npm run setup
+npm run dev
+\`\`\`
 
 ### アクセス方法
 
@@ -148,82 +167,102 @@ chmod +x setup.sh
 
 ---
 
-## ⚙️ 詳細セットアップ
+## ⚙️ 詳細セットアップ・代替手順
 
 <details>
-<summary><strong>🪟 Windows環境での詳細セットアップ</strong></summary>
+<summary><strong>🪟 Windows ネイティブ環境（推奨）</strong></summary>
 
-### Windows環境
+### Windows環境での詳細セットアップ
 
-#### 1. WSL2のインストール
-\`\`\`powershell
-# PowerShellを管理者として実行
-wsl --install
-# 再起動後
-wsl --set-default-version 2
+#### 1. Node.js のインストール
+1. [Node.js 公式サイト](https://nodejs.org/)から LTS版をダウンロード
+2. インストーラーを実行（すべてデフォルト設定でOK）
+3. コマンドプロンプトで確認：
+   \`\`\`cmd
+   node --version
+   npm --version
+   \`\`\`
+
+#### 2. PostgreSQL のインストール（オプション）
+1. [PostgreSQL 公式サイト](https://www.postgresql.org/download/windows/)からダウンロード
+2. インストール時にパスワードを設定（例：\`password\`）
+3. ポート：5432（デフォルト）
+
+#### 3. 環境変数の設定（簡単版）
+プロジェクトルートで \`.env.example\` を \`.env\` にコピーして編集：
+\`\`\`cmd
+copy .env.example .env
+notepad .env
 \`\`\`
 
-#### 2. Ubuntu (WSL2) のセットアップ
-\`\`\`bash
-# WSL2 Ubuntuターミナルで実行
-sudo apt update && sudo apt upgrade -y
-sudo apt install -y curl wget git unzip
+</details>
 
-# Node.js 18のインストール
-curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-sudo apt-get install -y nodejs
+<details>
+<summary><strong>🔧 SQLite を使用した超簡単セットアップ</strong></summary>
+
+### SQLite 版（データベース設定不要）
+
+PostgreSQL の代わりに SQLite を使用することで、データベースのインストールが不要になります：
+
+#### 1. SQLite モードで起動
+\`\`\`cmd
+npm run dev:sqlite
 \`\`\`
 
-#### 3. Docker Desktop for Windowsのインストール
+#### 2. 特徴
+- ✅ データベースのインストール不要
+- ✅ ファイルベースのデータベース
+- ✅ 開発・テスト用に最適
+- ⚠️ 本番環境では PostgreSQL を推奨
+
+</details>
+
+<details>
+<summary><strong>🐳 Docker を使用したセットアップ（従来版）</strong></summary>
+
+### Docker 環境でのセットアップ
+
+Docker Desktop が必要ですが、WSL2 は不要です：
+
+#### 1. Docker Desktop のインストール
 1. [Docker Desktop](https://www.docker.com/products/docker-desktop/)をダウンロード
-2. インストール時に「Enable WSL2 integration」をチェック
-3. Settings → Resources → WSL Integration でUbuntuを有効化
+2. **WSL2 統合は無効** にしてインストール
 
-</details>
-
-<details>
-<summary><strong>🐧 Linux/Mac環境での詳細セットアップ</strong></summary>
-
-### Linux/Mac環境
-
-#### 必要なソフトウェアのインストール
-\`\`\`bash
-# Ubuntu/Debian
-sudo apt update
-sudo apt install -y docker.io docker-compose nodejs npm git
-
-# macOS (Homebrew)
-brew install docker docker-compose node git
-\`\`\`
-
-</details>
-
-<details>
-<summary><strong>🛠 手動セットアップ手順</strong></summary>
-
-### 手動セットアップ
-
-#### 1. 環境変数の設定
-\`\`\`bash
-cp .env.example .env
-# .envファイルを編集して必要な値を設定
-\`\`\`
-
-#### 2. Notion API設定（オプション）
-1. [Notion Developers](https://www.notion.so/my-integrations)でIntegrationを作成
-2. データベースにIntegrationを招待
-3. API KeyとDatabase IDを.envに設定
-
-#### 3. Docker環境での起動
-\`\`\`bash
+#### 2. Docker 環境での起動
+\`\`\`cmd
 docker-compose up -d
 \`\`\`
 
-#### 4. データベースの初期化
-\`\`\`bash
+#### 3. データベースの初期化
+\`\`\`cmd
 docker-compose exec backend npx prisma migrate deploy
 docker-compose exec backend npx prisma generate
 docker-compose exec backend npm run db:seed
+\`\`\`
+
+</details>
+
+<details>
+<summary><strong>🔧 Notion API設定（オプション）</strong></summary>
+
+### Notion 連携の設定
+
+Notion との連携が必要な場合のみ設定してください：
+
+#### 1. Notion Integration の作成
+1. [Notion Developers](https://www.notion.so/my-integrations)にアクセス
+2. 「New integration」をクリック
+3. 名前を入力して「Submit」
+
+#### 2. データベースの共有
+1. Notion でプロジェクト管理用データベースを開く
+2. 右上の「Share」→ 作成した Integration を招待
+
+#### 3. 環境変数に設定
+\`.env\` ファイルに以下を追加：
+\`\`\`env
+NOTION_API_KEY=secret_xxxxxxxxxxxxx
+NOTION_DATABASE_ID=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 \`\`\`
 
 </details>
@@ -381,9 +420,12 @@ timecard_web_v3/
 │   ├── prisma/               # データベーススキーマ
 │   └── package.json          # バックエンド依存関係
 ├── scripts/                   # 開発用スクリプト
-│   ├── setup.sh              # 自動セットアップ
+│   ├── setup-env.js          # 環境設定セットアップ
+│   ├── setup.sh              # 自動セットアップ（Linux/Mac）
 │   ├── dev.sh                # 開発環境起動
 │   └── reset-db.sh           # データベースリセット
+├── setup.bat                 # Windowsワンクリックセットアップ
+├── package.json              # プロジェクト依存関係・スクリプト
 ├── docker-compose.yml         # Docker設定
 ├── .env.example              # 環境変数テンプレート
 ├── CLAUDE.md                 # プロジェクト仕様書
@@ -391,60 +433,88 @@ timecard_web_v3/
 └── README.md                 # このファイル
 \`\`\`
 
-## 🔧 開発
+---
 
-### 🎯 主要コマンド
+## 🛠 開発
 
-#### プロジェクト管理
-\`\`\`bash
-./setup.sh              # 初期セットアップ
-./scripts/dev.sh         # 開発環境起動
-./scripts/reset-db.sh    # データベースリセット
+### 開発環境の起動
+
+<div align="center">
+
+| 環境 | コマンド | 説明 |
+|------|----------|------|
+| 🚀 **通常** | `npm run dev` | PostgreSQL + フル機能 |
+| 🔧 **簡単** | `npm run dev:sqlite` | SQLite + DB設定不要 |
+| 🐳 **Docker** | `npm run docker:dev` | Docker環境 |
+
+</div>
+
+### 主要コマンド
+
+<details>
+<summary><strong>📦 プロジェクト管理</strong></summary>
+
+\`\`\`cmd
+REM Windows
+npm run setup            # 初期セットアップ
+setup.bat               # ワンクリックセットアップ
+npm run dev             # 開発環境起動
+npm run dev:sqlite      # SQLite版開発環境
+
+REM データベース
+npm run db:reset        # データベースリセット
+npm run db:migrate      # マイグレーション実行
+npm run db:seed         # 初期データ投入
 \`\`\`
 
-#### フロントエンド (frontend/)
-\`\`\`bash
-npm run dev              # 開発サーバー起動 (http://localhost:3000)
-npm run build            # プロダクションビルド
-npm run lint             # ESLintコード品質チェック
-npm run type-check       # TypeScript型チェック
-npm test                 # テスト実行
-npm run preview          # ビルド版プレビュー
+</details>
+
+<details>
+<summary><strong>🎨 フロントエンド</strong></summary>
+
+\`\`\`cmd
+npm run dev:frontend    # フロントエンドのみ起動
+npm run build:frontend  # プロダクションビルド
+npm run lint:frontend   # ESLint チェック
+npm run test:frontend   # テスト実行
 \`\`\`
 
-#### バックエンド (backend/)
-\`\`\`bash
-npm run dev              # 開発サーバー起動 (http://localhost:5000)
-npm run build            # TypeScriptビルド
-npm run start            # プロダクション起動
-npm run lint             # ESLintコード品質チェック
-npm run db:migrate       # データベースマイグレーション
-npm run db:generate      # Prismaクライアント生成
-npm run db:seed          # 初期データ投入
-npm run db:reset         # データベースリセット
+</details>
+
+<details>
+<summary><strong>⚙️ バックエンド</strong></summary>
+
+\`\`\`cmd
+npm run dev:backend     # バックエンドのみ起動
+npm run build:backend   # TypeScript ビルド
+npm run start           # プロダクション起動
+npm run lint:backend    # ESLint チェック
+npm run test:backend    # テスト実行
 \`\`\`
 
-#### Docker操作
-\`\`\`bash
-docker-compose up -d     # バックグラウンド起動
-docker-compose down      # 停止・削除
-docker-compose logs      # ログ表示
-docker-compose ps        # 実行状況確認
+</details>
+
+<details>
+<summary><strong>🐳 Docker操作</strong></summary>
+
+\`\`\`cmd
+npm run docker:dev      # Docker環境起動
+npm run docker:down     # Docker環境停止
+npm run docker:reset    # Docker環境リセット
 \`\`\`
 
-### 🎨 開発用アカウント
+</details>
 
-初期データ投入後、以下のアカウントが使用可能：
+### 開発用アカウント
 
-\`\`\`
-管理者アカウント:
-Email: admin@company.com
-Password: Admin123!
+<div align="center">
 
-一般ユーザー:
-Email: user@company.com  
-Password: User123!
-\`\`\`
+| 種類 | メールアドレス | パスワード |
+|------|---------------|------------|
+| 👨‍💼 **管理者** | admin@company.com | Admin123! |
+| 👤 **一般ユーザー** | user@company.com | User123! |
+
+</div>
 
 ### 🌿 ブランチ戦略
 - \`main\`: 本番環境用安定版
