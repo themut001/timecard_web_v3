@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import utility classes */
+@import './styles/utilities.css';
+
+/* Liquid Glass Global Styles */
+@layer base {
+  body {
+    @apply bg-app-bg min-h-screen font-sans text-text-primary;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer components {
+  /* Liquid Glass Card */
+  .glass-card {
+    @apply bg-glass-light backdrop-blur-glass rounded-glass border border-white/20 shadow-glass-light;
+    background: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 8px 16px -4px rgba(139, 92, 246, 0.15), inset 0 2px 4px 0 rgba(255, 255, 255, 0.5);
+  }
+  
+  .glass-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 25px 50px -12px rgba(99, 102, 241, 0.15), inset 0 2px 4px 0 rgba(255, 255, 255, 0.5);
+    transition: all 0.3s ease;
+  }
+  
+  /* Liquid Glass Button */
+  .glass-button {
+    @apply px-6 py-3 rounded-glass font-medium transition-all duration-300;
+    @apply bg-gradient-to-r from-primary-500 to-secondary-500 text-white;
+    @apply hover:shadow-glass-heavy hover:-translate-y-1;
+    @apply active:translate-y-0 active:shadow-glass-light;
+  }
+  
+  .glass-button-outline {
+    @apply px-6 py-3 rounded-glass font-medium transition-all duration-300;
+    @apply bg-glass-light border border-primary-300 text-primary-700;
+    @apply hover:bg-gradient-to-r hover:from-primary-500 hover:to-secondary-500;
+    @apply hover:text-white hover:shadow-glass-heavy hover:-translate-y-1;
+  }
+  
+  /* Liquid Glass Input */
+  .glass-input {
+    @apply w-full px-4 py-3 rounded-glass border border-white/30;
+    @apply bg-glass-medium backdrop-blur-glass text-text-primary;
+    @apply placeholder:text-text-muted focus:outline-none;
+    @apply focus:ring-2 focus:ring-primary-500/50 focus:border-primary-500;
+    @apply transition-all duration-300;
+  }
+  
+  /* Liquid Float Animation */
+  .liquid-float {
+    animation: liquid-float 6s ease-in-out infinite;
+  }
+  
+  /* Glass Shimmer Effect */
+  .glass-shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .glass-shimmer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    animation: glass-shimmer 2s ease-in-out infinite;
+  }
+}

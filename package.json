@@ -1,0 +1,25 @@
+{
+  "name": "timecard-web-v3",
+  "version": "1.0.0",
+  "description": "社内勤怠管理・Notion連携Webアプリケーション",
+  "main": "index.js",
+  "scripts": {
+    "install:frontend": "cd frontend && npm install",
+    "install:backend": "cd backend && npm install",
+    "install:all": "npm run install:frontend && npm run install:backend",
+    "dev:frontend": "cd frontend && npm start",
+    "dev:backend": "cd backend && npm run dev",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "build:frontend": "cd frontend && npm run build",
+    "build:backend": "cd backend && npm run build",
+    "build": "npm run build:backend && npm run build:frontend",
+    "lint": "cd frontend && npm run lint && cd ../backend && npm run lint",
+    "test": "cd frontend && npm test && cd ../backend && npm test"
+  },
+  "keywords": ["timecard", "attendance", "notion", "react", "express"],
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^7.6.0"
+  }
+}
