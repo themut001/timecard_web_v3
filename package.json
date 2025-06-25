@@ -6,12 +6,17 @@
   "scripts": {
     "setup": "npm run setup:all",
     "setup:all": "npm run install:all && npm run setup:env && npm run setup:db",
+    "setup:windows": "powershell -ExecutionPolicy Bypass -File setup-windows.ps1",
     "install:all": "npm install && npm run install:frontend && npm run install:backend",
     "install:frontend": "cd frontend && npm install",
     "install:backend": "cd backend && npm install",
     "setup:env": "node scripts/setup-env.js",
     "setup:db": "cd backend && npm run db:setup",
+    "check": "node scripts/environment-check.js",
+    "fix": "node scripts/fix-common-issues.js",
+    "doctor": "npm run check && npm run fix",
     "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\" --names \"API,WEB\" --prefix-colors \"green,blue\"",
+    "dev:safe": "npm run check && npm run dev",
     "dev:frontend": "cd frontend && npm start",
     "dev:backend": "cd backend && npm run dev",
     "dev:sqlite": "npm run dev:sqlite:setup && npm run dev",
@@ -42,5 +47,14 @@
   "engines": {
     "node": ">=18.0.0",
     "npm": ">=9.0.0"
-  }
+  },
+  "os": [
+    "win32",
+    "linux",
+    "darwin"
+  ],
+  "cpu": [
+    "x64",
+    "arm64"
+  ]
 }

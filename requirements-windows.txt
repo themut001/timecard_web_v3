@@ -1,0 +1,251 @@
+# ===================================================================
+# Timecard Web v3 - Windows環境依存関係リスト
+# 最終更新: 2025-01-25
+# ===================================================================
+
+# ===================================================================
+# 必須依存関係 (Required Dependencies)
+# ===================================================================
+
+# Node.js - JavaScript実行環境
+Node.js >= 18.0.0
+  公式サイト: https://nodejs.org/
+  推奨版: LTS版 (18.x 系列)
+  確認コマンド: node --version
+  インストール方法:
+    - 公式サイトからインストーラーをダウンロード
+    - Chocolatey: choco install nodejs-lts
+    - Scoop: scoop install nodejs-lts
+
+# npm - Node.js パッケージマネージャー
+npm >= 9.0.0
+  Node.jsと同時にインストールされる
+  確認コマンド: npm --version
+  アップデート: npm install -g npm@latest
+
+# Git for Windows - バージョン管理システム
+Git >= 2.40.0
+  公式サイト: https://git-scm.com/download/win
+  確認コマンド: git --version
+  インストール方法:
+    - 公式サイトからインストーラーをダウンロード
+    - Chocolatey: choco install git
+    - Scoop: scoop install git
+
+# ===================================================================
+# システム要件 (System Requirements)
+# ===================================================================
+
+# オペレーティングシステム
+Windows 10 (1909以降) または Windows 11
+  - Windows 10 Home/Pro/Enterprise 対応
+  - Windows 11 Home/Pro/Enterprise 対応
+  - Windows Server 2019/2022 対応
+
+# ハードウェア要件
+RAM >= 4GB (8GB以上推奨)
+ディスク空き容量 >= 5GB
+CPU: 任意（2コア以上推奨）
+
+# PowerShell
+PowerShell >= 5.0
+  Windows 10/11には標準でインストール済み
+  確認コマンド: $PSVersionTable.PSVersion
+
+# ===================================================================
+# 推奨環境 (Recommended Environment)
+# ===================================================================
+
+# コードエディタ
+Visual Studio Code (推奨)
+  公式サイト: https://code.visualstudio.com/
+  インストール方法:
+    - 公式サイトからインストーラーをダウンロード
+    - Chocolatey: choco install vscode
+    - Scoop: scoop install vscode
+
+# 推奨VS Code拡張機能
+  - TypeScript and JavaScript Language Features
+  - ESLint
+  - Prettier - Code formatter
+  - Tailwind CSS IntelliSense
+  - Prisma
+  - Auto Rename Tag
+  - Path Intellisense
+
+# ===================================================================
+# オプション依存関係 (Optional Dependencies)
+# ===================================================================
+
+# PostgreSQL - 本番環境用データベース
+PostgreSQL >= 14.0 (オプション)
+  開発環境ではSQLiteを自動使用するため不要
+  本格運用時のみ必要
+  公式サイト: https://www.postgresql.org/download/windows/
+  インストール方法:
+    - 公式サイトからインストーラーをダウンロード
+    - Chocolatey: choco install postgresql
+    - Scoop: scoop install postgresql
+
+# Docker Desktop - コンテナ環境 (オプション)
+Docker Desktop >= 4.0.0 (オプション)
+  コンテナでの実行時のみ必要
+  公式サイト: https://www.docker.com/products/docker-desktop/
+  要件: Windows 10 Pro/Enterprise (Hyper-V必要)
+  または Windows 11 Home/Pro (WSL2バックエンド)
+
+# パッケージマネージャー (推奨)
+Chocolatey (推奨)
+  インストール: https://chocolatey.org/install
+  依存関係の自動インストールに使用
+
+Scoop (代替)
+  インストール: https://scoop.sh/
+  Chocolateyの代替として使用可能
+
+# ===================================================================
+# 開発ツール (Development Tools)
+# ===================================================================
+
+# Windows Terminal (推奨)
+Windows Terminal (推奨)
+  Microsoft Storeからインストール
+  より快適なコマンドライン体験
+
+# PowerToys (便利ツール)
+Microsoft PowerToys (オプション)
+  GitHub: https://github.com/microsoft/PowerToys
+  便利な生産性向上機能
+
+# ===================================================================
+# セキュリティとファイアウォール設定
+# ===================================================================
+
+# Windows Defender 除外設定 (パフォーマンス向上)
+推奨除外フォルダー:
+  - プロジェクトルートフォルダー
+  - Node.js インストールディレクトリ
+    (通常: C:\Program Files\nodejs)
+  - npm キャッシュディレクトリ
+    (通常: %APPDATA%\npm-cache)
+
+# ファイアウォール設定 (必要に応じて)
+許可が必要なポート:
+  - 3000 (フロントエンド開発サーバー)
+  - 5000 (バックエンドAPIサーバー)
+  - 5432 (PostgreSQL, 使用時のみ)
+
+# ===================================================================
+# 環境変数 (Environment Variables)
+# ===================================================================
+
+# 自動設定される環境変数 (通常は設定不要)
+PATH:
+  - Node.js実行パス
+  - npm実行パス  
+  - Git実行パス
+
+# プロジェクト固有の環境変数 (.envファイルで設定)
+NODE_ENV=development
+PORT=5000
+DATABASE_URL=file:./dev.db
+JWT_SECRET=your-secret-key
+NOTION_API_KEY=your-notion-key (オプション)
+NOTION_DATABASE_ID=your-database-id (オプション)
+
+# ===================================================================
+# バージョン互換性マトリクス (Compatibility Matrix)
+# ===================================================================
+
+# サポート対象組み合わせ
+✅ Windows 10 (1909+) + Node.js 18.x + npm 9.x
+✅ Windows 11 + Node.js 18.x + npm 9.x + PostgreSQL 14.x
+✅ Windows 10 Pro + Docker Desktop 4.x (オプション)
+✅ Windows 11 + Docker Desktop 4.x (オプション)
+
+# 非サポート組み合わせ
+❌ Windows 8.1 以前
+❌ Node.js 16.x 以前
+❌ npm 8.x 以前
+❌ Internet Explorer (ブラウザサポート外)
+
+# ===================================================================
+# 既知の制限事項 (Known Limitations)
+# ===================================================================
+
+# Windows固有の制限
+- ファイルパスに日本語・スペースが含まれる場合は注意が必要
+- 長いファイルパス（260文字制限）はWindows 10 version 1607以降で解除可能
+- ファイルロック機能がLinux/macOSと異なる場合がある
+
+# パフォーマンス考慮事項
+- ウイルススキャンソフトの除外設定推奨
+- SSDストレージでのパフォーマンス向上
+- Windows Defenderリアルタイム保護の除外設定推奨
+
+# ===================================================================
+# 自動インストールスクリプト対応
+# ===================================================================
+
+# setup-windows.ps1 で自動インストール可能な項目
+✅ Chocolatey (パッケージマネージャー)
+✅ Node.js LTS (必須)
+✅ Git for Windows (必須)
+✅ VS Code設定ファイル作成
+✅ プロジェクト依存関係インストール
+
+# 手動インストールが必要な項目
+⚠️ PostgreSQL (本格運用時のみ)
+⚠️ Docker Desktop (コンテナ使用時のみ)
+⚠️ Windows Terminal (推奨)
+⚠️ PowerToys (オプション)
+
+# ===================================================================
+# 診断・トラブルシューティング
+# ===================================================================
+
+# 环境診断コマンド
+npm run check          # 基本環境チェック
+npm run doctor         # 包括的環境診断
+setup-windows.ps1      # 自動環境構築
+
+# 一般的な問題の解決
+npm run fix            # 自動問題修正
+setup-windows.ps1 -Repair  # 修復モード実行
+
+# ===================================================================
+# 更新・メンテナンス
+# ===================================================================
+
+# 定期的な更新推奨
+Node.js:    3-6ヶ月ごとにLTSバージョン確認
+npm:        月次でアップデート確認
+Git:        四半期ごとにアップデート確認
+VS Code:    自動更新推奨 (月次リリース)
+
+# プロジェクト依存関係の更新
+npm update              # 依存関係更新
+npm audit fix           # セキュリティ脆弱性修正
+npm outdated            # 古い依存関係確認
+
+# ===================================================================
+# サポート情報
+# ===================================================================
+
+# 問題報告先
+GitHub Issues: https://github.com/your-repo/timecard_web_v3/issues
+Documentation: README.md, TROUBLESHOOTING-WINDOWS.md
+
+# バージョン情報確認
+このファイルのバージョン: v3.0.0
+対応プロジェクト: Timecard Web v3
+最終テスト環境: Windows 11 Pro + Node.js 18.19.0 + npm 10.2.3
+
+# ===================================================================
+# 注意事項 (Important Notes)
+# ===================================================================
+
+⚠️ このリストは Windows 専用です
+⚠️ Linux/macOS では別の依存関係が必要です
+⚠️ 本番環境では追加のセキュリティ設定が必要です
+⚠️ 定期的にこのファイルの更新を確認してください
