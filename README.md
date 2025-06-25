@@ -1,16 +1,64 @@
-# 🏢 Timecard Web v3 - 社内勤怠管理・Notion連携アプリ
-
 <div align="center">
 
-![Node.js](https://img.shields.io/badge/Node.js-18+-green.svg)
-![React](https://img.shields.io/badge/React-18+-blue.svg)
-![TypeScript](https://img.shields.io/badge/TypeScript-5+-blue.svg)
-![Docker](https://img.shields.io/badge/Docker-Ready-blue.svg)
-![License](https://img.shields.io/badge/License-MIT-green.svg)
+# 🏢 Timecard Web v3
+## 社内勤怠管理・Notion連携アプリケーション
+
+![Node.js](https://img.shields.io/badge/Node.js-18+-44cc11?style=for-the-badge&logo=node.js&logoColor=white)
+![React](https://img.shields.io/badge/React-18+-61dafb?style=for-the-badge&logo=react&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-5+-3178c6?style=for-the-badge&logo=typescript&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-Ready-2496ed?style=for-the-badge&logo=docker&logoColor=white)
+![Notion](https://img.shields.io/badge/Notion-API-000000?style=for-the-badge&logo=notion&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
+
+**✨ Liquid Glass デザインを採用した現代的な勤怠管理システム**  
+*Notion API との連携により、プロジェクトタグ管理と工数集計を実現*
+
+[🚀 クイックスタート](#-クイックスタート) • [📖 使用方法](#-使用方法) • [🛠 開発](#-開発) • [🤝 コントリビューション](#-コントリビューション)
 
 </div>
 
-Liquid Glassデザインを採用した現代的な勤怠管理システム。Notion APIとの連携により、プロジェクトタグ管理と工数集計を実現します。
+---
+
+## 📋 目次
+
+- [🎯 概要](#-概要)
+- [✨ 主要機能](#-主要機能)  
+- [🛠 技術スタック](#-技術スタック)
+- [🚀 クイックスタート](#-クイックスタート)
+  - [前提条件](#前提条件)
+  - [簡単セットアップ](#簡単セットアップ)
+  - [アクセス方法](#アクセス方法)
+- [⚙️ 詳細セットアップ](#️-詳細セットアップ)
+  - [Windows環境](#windows環境)
+  - [Linux/Mac環境](#linuxmac環境)
+  - [手動セットアップ](#手動セットアップ)
+- [📝 使用方法](#-使用方法)
+- [🛠 開発](#-開発)
+  - [開発環境の起動](#開発環境の起動)
+  - [主要コマンド](#主要コマンド)
+  - [開発用アカウント](#開発用アカウント)
+- [🚨 トラブルシューティング](#-トラブルシューティング)
+- [📊 API仕様](#-api仕様)
+- [🏗 プロジェクト構造](#-プロジェクト構造)
+- [🤝 コントリビューション](#-コントリビューション)
+- [📚 関連ドキュメント](#-関連ドキュメント)
+- [📞 サポート](#-サポート)
+
+---
+
+## 🎯 概要
+
+Liquid Glass デザインを採用した現代的な勤怠管理システムです。Notion API との連携により、プロジェクトタグ管理と工数集計を実現します。
+
+**🎨 デザインの特徴**
+- 美しいガラスモーフィズム UI
+- パステルカラーのカラーパレット  
+- 直感的で使いやすいインターフェース
+
+**🔗 Notion連携機能**
+- プロジェクトタグの自動同期（最大1000件）
+- タグ別工数入力・集計・分析
+- リアルタイムでの工数管理
 
 ## ✨ 主要機能
 
@@ -42,28 +90,72 @@ Liquid Glassデザインを採用した現代的な勤怠管理システム。No
 - **WSL2対応** Windows開発環境
 - **Hot Reload** 開発効率化
 
-## 📋 セットアップ
+## 🚀 クイックスタート
 
-### 📝 事前準備
+### 前提条件
 
-以下のソフトウェアが必要です：
+<table>
+<tr>
+<th>🪟 Windows</th>
+<th>🐧 Linux/Mac</th>
+</tr>
+<tr>
+<td>
 
-#### 🪟 Windows環境
 - **WSL2** (Windows Subsystem for Linux 2)
-- **Docker Desktop for Windows** (WSL2バックエンド)
+- **Docker Desktop** (WSL2バックエンド)
 - **Git for Windows**
-- **Visual Studio Code** (推奨)
-  - Remote - WSL 拡張機能
+- **VS Code** (推奨)
 
-#### 🐧 Linux/Mac環境
+</td>
+<td>
+
 - **Docker** & **Docker Compose**
-- **Node.js 18+** (開発時のみ)
+- **Node.js 18+** (開発用)
 - **Git**
 
-### 🪟 Windows用セットアップ手順
+</td>
+</tr>
+</table>
+
+### 簡単セットアップ
+
+**1️⃣ リポジトリをクローン**
+\`\`\`bash
+git clone <repository-url>
+cd timecard_web_v3
+\`\`\`
+
+**2️⃣ 自動セットアップ実行**
+\`\`\`bash
+chmod +x setup.sh
+./setup.sh
+\`\`\`
+
+**3️⃣ 完了！** 数分でアプリケーションが起動します。
+
+### アクセス方法
+
+<div align="center">
+
+| サービス | URL | 説明 |
+|---------|-----|------|
+| 🖥 **フロントエンド** | http://localhost:3000 | メインアプリケーション |
+| 🔌 **API** | http://localhost:5000/api | バックエンドAPI |
+| 🗄️ **データベース** | localhost:5432 | PostgreSQL |
+
+</div>
+
+---
+
+## ⚙️ 詳細セットアップ
+
+<details>
+<summary><strong>🪟 Windows環境での詳細セットアップ</strong></summary>
+
+### Windows環境
 
 #### 1. WSL2のインストール
-
 \`\`\`powershell
 # PowerShellを管理者として実行
 wsl --install
@@ -72,12 +164,9 @@ wsl --set-default-version 2
 \`\`\`
 
 #### 2. Ubuntu (WSL2) のセットアップ
-
 \`\`\`bash
 # WSL2 Ubuntuターミナルで実行
 sudo apt update && sudo apt upgrade -y
-
-# 必要なパッケージをインストール
 sudo apt install -y curl wget git unzip
 
 # Node.js 18のインストール
@@ -86,71 +175,58 @@ sudo apt-get install -y nodejs
 \`\`\`
 
 #### 3. Docker Desktop for Windowsのインストール
-
 1. [Docker Desktop](https://www.docker.com/products/docker-desktop/)をダウンロード
 2. インストール時に「Enable WSL2 integration」をチェック
 3. Settings → Resources → WSL Integration でUbuntuを有効化
 
-#### 4. プロジェクトのクローンと起動 (Windows)
+</details>
 
+<details>
+<summary><strong>🐧 Linux/Mac環境での詳細セットアップ</strong></summary>
+
+### Linux/Mac環境
+
+#### 必要なソフトウェアのインストール
 \`\`\`bash
-# WSL2 Ubuntuターミナルで実行
-cd ~
-git clone <repository-url>
-cd timecard_web_v3
+# Ubuntu/Debian
+sudo apt update
+sudo apt install -y docker.io docker-compose nodejs npm git
 
-# 自動セットアップスクリプト実行
-chmod +x setup.sh
-./setup.sh
+# macOS (Homebrew)
+brew install docker docker-compose node git
 \`\`\`
 
-### 🚀 クイックスタート（Linux/Mac）
+</details>
 
-\`\`\`bash
-git clone <repository-url>
-cd timecard_web_v3
-chmod +x setup.sh
-./setup.sh
-\`\`\`
+<details>
+<summary><strong>🛠 手動セットアップ手順</strong></summary>
 
-### 🌐 アクセスURL
-
-セットアップ完了後、以下のURLでアクセスできます：
-
-- **フロントエンド**: http://localhost:3000
-- **API**: http://localhost:5000/api
-- **データベース**: localhost:5432 (PostgreSQL)
-
-### 🛠 手動セットアップ
-
-自動セットアップが失敗した場合の手動手順：
+### 手動セットアップ
 
 #### 1. 環境変数の設定
-
 \`\`\`bash
 cp .env.example .env
 # .envファイルを編集して必要な値を設定
 \`\`\`
 
 #### 2. Notion API設定（オプション）
-
 1. [Notion Developers](https://www.notion.so/my-integrations)でIntegrationを作成
 2. データベースにIntegrationを招待
 3. API KeyとDatabase IDを.envに設定
 
 #### 3. Docker環境での起動
-
 \`\`\`bash
 docker-compose up -d
 \`\`\`
 
 #### 4. データベースの初期化
-
 \`\`\`bash
 docker-compose exec backend npx prisma migrate deploy
 docker-compose exec backend npx prisma generate
 docker-compose exec backend npm run db:seed
 \`\`\`
+
+</details>
 
 ### 🔧 開発環境の起動
 
@@ -171,11 +247,14 @@ docker-compose exec backend npm run db:seed
 ./scripts/reset-db.sh
 \`\`\`
 
+---
+
 ## 🚨 トラブルシューティング
 
-### Windows固有の問題
+<details>
+<summary><strong>🪟 Windows固有の問題</strong></summary>
 
-#### WSL2でDockerが起動しない
+### WSL2でDockerが起動しない
 \`\`\`bash
 # WSL2のメモリ制限を確認
 cat /proc/meminfo | grep MemTotal
@@ -184,14 +263,14 @@ cat /proc/meminfo | grep MemTotal
 # WindowsでDocker Desktopを右クリック → Restart
 \`\`\`
 
-#### ファイルパーミッションエラー
+### ファイルパーミッションエラー
 \`\`\`bash
 # WSL2でスクリプトに実行権限を付与
 chmod +x setup.sh
 chmod +x scripts/*.sh
 \`\`\`
 
-#### ポート競合エラー
+### ポート競合エラー
 \`\`\`bash
 # 使用中のポートを確認
 netstat -ano | findstr :3000
@@ -200,30 +279,35 @@ netstat -ano | findstr :5000
 # プロセスを終了（TaskManager使用推奨）
 \`\`\`
 
-### 共通の問題
-
-#### Node.jsバージョンエラー
-\`\`\`bash
-# Node.jsバージョン確認
-node --version
-
-# 18以上が必要。古い場合は再インストール
+### VS Code設定
+推奨設定ファイル \`.vscode/settings.json\`:
+\`\`\`json
+{
+  "remote.WSL.fileWatcher.polling": true,
+  "files.eol": "\\n",
+  "terminal.integrated.defaultProfile.windows": "WSL"
+}
 \`\`\`
 
-#### Docker Composeエラー
+</details>
+
+<details>
+<summary><strong>🔧 共通の問題</strong></summary>
+
+### Node.jsバージョンエラー
 \`\`\`bash
-# Dockerサービス確認
+node --version  # 18以上が必要
+\`\`\`
+
+### Docker Composeエラー
+\`\`\`bash
 docker --version
 docker-compose --version
-
-# コンテナの状態確認
 docker-compose ps
-
-# ログ確認
 docker-compose logs
 \`\`\`
 
-#### データベース接続エラー
+### データベース接続エラー
 \`\`\`bash
 # PostgreSQLコンテナの確認
 docker-compose exec postgres psql -U postgres -d timecard_dev
@@ -232,24 +316,23 @@ docker-compose exec postgres psql -U postgres -d timecard_dev
 ./scripts/reset-db.sh
 \`\`\`
 
-### Notion API関連
+</details>
 
-#### 同期エラー
+<details>
+<summary><strong>🔗 Notion API関連</strong></summary>
+
+### 同期エラーの解決方法
 1. Notion API Keyが正しく設定されているか確認
-2. データベースIDが正しいか確認
+2. データベースIDが正しいか確認  
 3. Integrationがデータベースに招待されているか確認
 
-### VS Code設定 (Windows)
-
-推奨設定ファイル `.vscode/settings.json`:
-
-\`\`\`json
-{
-  "remote.WSL.fileWatcher.polling": true,
-  "files.eol": "\\n",
-  "terminal.integrated.defaultProfile.windows": "WSL"
-}
+### 環境変数の確認
+\`\`\`bash
+echo $NOTION_API_KEY
+echo $NOTION_DATABASE_ID
 \`\`\`
+
+</details>
 
 ## 📝 使用方法
 
